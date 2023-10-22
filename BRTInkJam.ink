@@ -41,6 +41,7 @@ You step aboard the helicopter and sit down at the first available seat. Being y
 -> END
 
 === helicopter_landing ===
+#CLEAR
 ~store_previous_player_stats()
 After some time, the helicopter begins it's descent into a forested landscape, thick with coniferous trees. You seem to be landing in the middle of field with nothing to note in sight. The uneventful landing helps to calm you a bit, but you still feel uneasy.
 
@@ -52,11 +53,13 @@ The team leader, known to you only as Razor, stands up and waves everyone to dis
     He looks you up and down and he seems to have a revelation.
     "We serve an important purpose. Keeping our country safe from these mutant horrors. The nature of our work dictates that we are unsactioned publicly by the government. Which means I can deal with dead weight like this."
     Razor draws his side arm and before you can react with anything beyond pure terror, he shoots you in the throat.
-    You slump over, regretting ever signing up with your last agonal gasps of breath.
-    -> game_over(-> helicopter_landing)
+    -You slump over, regretting ever signing up with your last agonal gasps of breath.
+    + Gasp
+        -> game_over(-> helicopter_landing)
 -> END
 
 === facility_entrance ===
+#CLEAR
 You step off the helicopter and take a look around. All you see is tall grass in the field and the surrounding forest. 
 Razor heads towards the forest, while the rest of the team follows. You stay with the pack, ensuring to be vigilant. As you enter the treeline, you notice an unnatural hill of dirt and moss. You circle around to see a titanium door built into the mound.
 This must be the entrance to the facility in the briefing. Razor assigns you as the point man.
@@ -66,11 +69,12 @@ This must be the entrance to the facility in the briefing. Razor assigns you as 
 -> END
 
 === open_facility_entrance ===
+#CLEAR
 Razor scans an id card at the terminal by the front door. An affirmative beep tones and he nods at you to open the door. After taking a deep breath, you pull down on the handle and open the door.
 
 The metal creaks as the door opens. It's dark inside and you turn on the flashlight attached to your vest. It pierces through the darkness and illuminates a figure.
 
-You shout out to the figure that you're there to help. It inhumanly turns around. You shine the light on its' face and see growths coming out of leathery uneven skin. A putrid stench hits you. You realize this figure isn't human.
+You shout out to the figure that you're there to help. It inhumanly turns around. You shine the light on its' face and see growths coming out of leathery uneven skin. A putrid stench hits you. Rotting flesh and pus drip from its face. You realize this figure isn't human.
 
 It lunges at you with surprising speed, considering it's sluggish turn-around. You prime to defend yourself.
 
@@ -83,6 +87,20 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
 - The mutant lays dead on the floor. You are in disbelief, even though you'd been warned many times in the briefing. Razor walks up to you and places a a reassuring hand on your shoulder.
 - "First time you see one is always shocking, but keep doing as you are and you'll make it out alright."
 - You refocus on the mission at hand. Save any survivors and retrieve the research data
+-> END
+
+/* TODO: 3 more battle encounters. Add creature that moves when blinking */
+
+=== main_hallway ===
+-> END
+
+=== lab ===
+-> END
+
+=== testing_area ===
+-> END
+
+=== escape ===
 -> END
 
 === ending ===
