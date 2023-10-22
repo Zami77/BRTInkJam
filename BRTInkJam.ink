@@ -33,7 +33,7 @@ You step aboard the helicopter and sit down at the first available seat. Being y
     "I'm sure your nervous for your first mission, but pay attention and you'll be just fine."
     You notice he's holding a standard combat knife, despite one already being in his harness.
     "I seem to have packed a spare, why don't you take this one?"
-    You gratefully accept the knife, realizing you somehow forgot to pack one.
+    You gratefully accept the knife, realizing you somehow forgot to pack one. So much for triple checking.
     ~ has_knife = true
 + Lean back and enjoy the solace
     You give a friendly head nod in his direction, but aren't much in the mood for talking.
@@ -195,6 +195,7 @@ The errants back now is to you while he's focused on Razor. There's a neon pulsa
 -> END
 
 === escape ===
+#CLEAN
 You take the drive and head towards the exit.
 {not gave_razor_ammo: You pass Razor's corpse on the way. You wish there was some way you could've helped.}
 {gave_razor_ammo: You help Razor off the ground. "Thanks for the help, wouldn't have made it out of here without you." He follows behind you.}
@@ -204,10 +205,11 @@ You made it, not bad for a first day.
 -> END
 
 === ending ===
-#CLEAR
 Congratulations, you survived!
 {gave_razor_ammo: You got the best ending and saved Razor!}
 {not gave_razor_ammo: You survived, but Razor didn't. Maybe if you gave him some ammo...}
+Thanks for playing!
+
 + Start Over
     -> intro
 -> END
