@@ -91,36 +91,57 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
     -> main_hallway
 -> END
 
-/* TODO: 3 more battle encounters. Add creature that moves when blinking */
-
 === main_hallway ===
 #CLEAR
 ~store_previous_player_stats()
 
-You cautiously walk down the hallway. Razor and the team close behind. Scanning from left to right for anymore aberrations. 
+-You cautiously walk down the hallway. Razor and the team close behind. Scanning from left to right for anymore aberrations. 
 
-The team's radio operator reports back to command on successful entry into the facility. The squawk from the radio is jarring through the silence, but the acknowledgement from the command center reminds you that you have an exit plan from this place.
+-The team's radio operator reports back to command on successful entry into the facility. The squawk from the radio is jarring through the silence, but the acknowledgement from the command center reminds you that you have an exit plan from this place.
 
-As you patrol down the hall, you notice in the distance another mutant. It's back is turned and is facing into a turn of the hallway. This time you don't make the same mistake to alert the mutant to your position. Razor tells you that the team will follow your lead on what to do.
+-As you patrol down the hall, you notice in the distance another mutant. It's back is turned and is facing into a turn of the hallway. This time you don't make the same mistake to alert the mutant to your position. Razor tells you that the team will follow your lead on what to do.
 
-+ {ammo > 0} Use the assault rifle
-    ~ammo -= 1
-    From a safe distance, you aim your rifle at the humanoid mutant parasite. You drop it with one burst of fire into the mutant's head. Right after, two more mutants round the corner, aggresively hunting the source of the noise.
-    Keeping your aim steady, you expend the rest of the magazine to dispatch the two mutants with deadly accuracy. 
-    - After rounding the corner, you see a door labeled laboratory.
-    + Enter the laboratory
-        -> lab
-+ Sneak past the mutant
-    You decide to conserve ammunition and sneak past the mutant. You silent walk behind the mutant, doing your best to not alert. It seems to be working until you round the corner and see two more mutants staring directly at you. You aim your rifle and fire, but they are too close at this point.
-    -One leaps on you and bites into your carotid artery. Your team is able to shoot them down, but it's too late for you at this point. The medic runs over to you and administers a shot of morphine. At least it won't be too painful at the end.
-    + Sleep it off
-        -> game_over(-> main_hallway)
+    + Sneak past the mutant
+        --You decide to conserve ammunition and sneak past the mutant. You silent walk behind the mutant, doing your best to not alert. It seems to be working until you round the corner and see two more mutants staring directly at you. You aim your rifle and fire, but they are too close at this point.
+        --One leaps on you and bites into your carotid artery. Your team is able to shoot them down, but it's too late for you at this point. The medic runs over to you and administers a shot of morphine. At least it won't be too painful at the end.
+        ** Sleep it off
+            -> game_over(-> main_hallway)
+    
+    + {ammo > 0} Use the assault rifle
+        ~ammo -= 1
+        --From a safe distance, you aim your rifle at the humanoid mutant parasite. You drop it with one burst of fire into the mutant's head. Right after, two more mutants round the corner, aggresively hunting the source of the noise.
+        --Keeping your aim steady, you expend the rest of the magazine to dispatch the two mutants with deadly accuracy. {ammo} magazines of ammunition remaining.
+        --After rounding the corner, you see a door labeled laboratory.
+        ** Enter the laboratory
+            ---> lab
 -> END
 
 === lab ===
+#CLEAR
+Razor scans his card at the terminal and the door unlocks. You open it up again and are delighted to see the room is properly lit. "BRT team is here, anyone alive?" Razor shouts. A head pops up behind a long desk covered with scientific equipment.
+Fortunately, it's human and it speaks. "What took you so long?" The agitated scientist's anger seemed to be hiding the terror bubbling underneath. She stood up and walked over to Razor, handing him a hard drive.
+"This is most of the lab's research data. However, the last remaining part of the research data is in the testing area. Unfortunately, that's also where a new errant is."
+The briefing came back to me, errants are what they refer to these radioactive mutant parasites as.
+"It's imperative you get that research. This new errant was engineered with a complete focus on one sense, sight. If it notices any change in the visual environment it will visciously attack."
+
+The scientist went around the lab and gathered the remaining survivors. Razor dispatched two members to escort them back to the helicopter for evacuation.
+
+"We'll be right behind you, get the survivors and this hard drive back to the helicopter" Razor waved them off and turned back towards me.
+
+"Do you have any extra ammo? I'm running low"
+You still have {ammo} magazines left.
++ {ammo > 1} Give Razor extra ammo
+    -- "Appreciate it!" Razor is grateful for the ammo.
++ Keep your ammo
+    -- "I Undersand." Razor counts the few rounds he has left.
+- "You're on point again." Razor nods at you and you take the lead.
++ Head towards the testing area
+    -- -> testing_area
 -> END
 
 === testing_area ===
+start here
+//TODO: take from here
 -> END
 
 === escape ===
