@@ -82,16 +82,39 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
     You draw the knife just in time to slash the mutant's throat. It barely responds to the pain, but the wound clearly caused some damage as it staggers back. You take the opportunity to stab the knife into the mutants head. It quickly crumbles.
 + {ammo > 0} Use the assault rifle
     ~ammo -= 1
-    You aim your rifle for body mass and fire several bursts. The mutant staggers with each wave of rounds, until eventually succumbing. You peer over your firing sight.
+    You aim your rifle for body mass and fire several bursts. The mutant staggers with each wave of rounds, until eventually succumbing. You peer over your firing sight. {ammo} magazines of ammunition remaining.
 
 - The mutant lays dead on the floor. You are in disbelief, even though you'd been warned many times in the briefing. Razor walks up to you and places a a reassuring hand on your shoulder.
 - "First time you see one is always shocking, but keep doing as you are and you'll make it out alright."
-- You refocus on the mission at hand. Save any survivors and retrieve the research data
+- You refocus on the mission at hand. Save any survivors and retrieve the research data.
++ Continue down the hallway
+    -> main_hallway
 -> END
 
 /* TODO: 3 more battle encounters. Add creature that moves when blinking */
 
 === main_hallway ===
+#CLEAR
+~store_previous_player_stats()
+
+You cautiously walk down the hallway. Razor and the team close behind. Scanning from left to right for anymore aberrations. 
+
+The team's radio operator reports back to command on successful entry into the facility. The squawk from the radio is jarring through the silence, but the acknowledgement from the command center reminds you that you have an exit plan from this place.
+
+As you patrol down the hall, you notice in the distance another mutant. It's back is turned and is facing into a turn of the hallway. This time you don't make the same mistake to alert the mutant to your position. Razor tells you that the team will follow your lead on what to do.
+
++ {ammo > 0} Use the assault rifle
+    ~ammo -= 1
+    From a safe distance, you aim your rifle at the humanoid mutant parasite. You drop it with one burst of fire into the mutant's head. Right after, two more mutants round the corner, aggresively hunting the source of the noise.
+    Keeping your aim steady, you expend the rest of the magazine to dispatch the two mutants with deadly accuracy. 
+    - After rounding the corner, you see a door labeled laboratory.
+    + Enter the laboratory
+        -> lab
++ Sneak past the mutant
+    You decide to conserve ammunition and sneak past the mutant. You silent walk behind the mutant, doing your best to not alert. It seems to be working until you round the corner and see two more mutants staring directly at you. You aim your rifle and fire, but they are too close at this point.
+    -One leaps on you and bites into your carotid artery. Your team is able to shoot them down, but it's too late for you at this point. The medic runs over to you and administers a shot of morphine. At least it won't be too painful at the end.
+    + Sleep it off
+        -> game_over(-> main_hallway)
 -> END
 
 === lab ===
@@ -105,14 +128,14 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
 
 === ending ===
 #CLEAR
-You win!
+You survived!
 + Start Over
     -> intro
 -> END
 
 === game_over(-> last_decision) ===
 #CLEAR
-Game Over!
+Mission Failed!
 + Go back to last decision
     ~load_previous_player_stats()
     -> last_decision
