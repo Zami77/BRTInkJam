@@ -102,7 +102,7 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
 -As you patrol down the hall, you notice in the distance another mutant. It's back is turned and is facing into a turn of the hallway. This time you don't make the same mistake to alert the mutant to your position. Razor tells you that the team will follow your lead on what to do.
 
     + Sneak past the mutant
-        --You decide to conserve ammunition and sneak past the mutant. You silent walk behind the mutant, doing your best to not alert. It seems to be working until you round the corner and see two more mutants staring directly at you. You aim your rifle and fire, but they are too close at this point.
+        --You decide to conserve ammunition and sneak past the mutant. You silenty walk behind the mutant, doing your best to not alert. It seems to be working until you round the corner and see two more mutants staring directly at you. You aim your rifle and fire, but they are too close at this point.
         --One leaps on you and bites into your carotid artery. Your team is able to shoot them down, but it's too late for you at this point. The medic runs over to you and administers a shot of morphine. At least it won't be too painful at the end.
         ** Sleep it off
             -> game_over(-> main_hallway)
@@ -118,15 +118,21 @@ It lunges at you with surprising speed, considering it's sluggish turn-around. Y
 
 === lab ===
 #CLEAR
-Razor scans his card at the terminal and the door unlocks. You open it up again and are delighted to see the room is properly lit. "BRT team is here, anyone alive?" Razor shouts. A head pops up behind a long desk covered with scientific equipment.
-Fortunately, it's human and it speaks. "What took you so long?" The agitated scientist's anger seemed to be hiding the terror bubbling underneath. She stood up and walked over to Razor, handing him a hard drive.
+Razor scans his card at the terminal and the door unlocks. You open it up again and are delighted to see the room is properly lit. 
+"BRT team is here, anyone alive?" Razor shouts. A head pops up behind a long desk covered with scientific equipment.
+
+Fortunately, it's human and it speaks. "What took you so long?" The agitated scientist's anger seemed to be hiding the terror bubbling underneath. She stood up and walks over to Razor, handing him a hard drive.
 "This is most of the lab's research data. However, the last remaining part of the research data is in the testing area. Unfortunately, that's also where a new errant is."
-The briefing came back to me, errants are what they refer to these radioactive mutant parasites as.
+The briefing comes back to you, errants are what they refer to these radioactive mutant parasites as.
 "It's imperative you get that research. This new errant was engineered with a complete focus on one sense, sight. If it notices any change in the visual environment it will visciously attack."
++ Evacuate the survivors
+    -> lab_2
+    
+=== lab_2 ===
+#CLEAR
+The scientist goes around the lab and gathers the remaining survivors. Razor dispatches two team members to escort them back to the helicopter for evacuation.
 
-The scientist went around the lab and gathered the remaining survivors. Razor dispatched two members to escort them back to the helicopter for evacuation.
-
-"We'll be right behind you, get the survivors and this hard drive back to the helicopter" Razor waved them off and turned back towards me.
+"We'll be right behind you, get the survivors and this hard drive back to the helicopter" Razor waves them off and turns back towards you.
 
 "Do you have any extra ammo? I'm running low"
 You still have {ammo} magazines left.
@@ -136,14 +142,21 @@ You still have {ammo} magazines left.
     -- "I Undersand." Razor counts the few rounds he has left.
 - "You're on point again." Razor nods at you and you take the lead.
 + Head towards the testing area
-    -- -> testing_area
+    -- -> path_to_testing_area
+-> END
+
+=== path_to_testing_area ===
+#CLEAR
+You exit the lab and see your teammates escorting the survivors back to the entrance. Part of you wishes you were heading there with them. You turn right, heading further into the depths of the facility.
+At the end of the hallway you come to a door labeled testing area. Large Biohazard warning signs are displayed around the entrance. It doesn't give you a great feeling.
+Razor walks up to the card key terminal and unlocks the door. Time to see this errant yourself.
++ Open the door
+    -> testing_area
 -> END
 
 === testing_area ===
-start here
-//TODO: take from here
--> END
 
+-> END
 === escape ===
 -> END
 
@@ -175,6 +188,7 @@ Mission Failed!
 ~ prev_health = health
 ~ prev_is_bitten = is_bitten
 ~ prev_ammo = ammo
+~ prev_has_knife = has_knife
 
 === function load_previous_player_stats ===
 ~ health = prev_health
