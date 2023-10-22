@@ -3,11 +3,13 @@ VAR health = 5
 VAR is_bitten = false
 VAR ammo = 3
 VAR has_knife = false
+VAR gave_razor_ammo = false
 
 VAR prev_health = 5
 VAR prev_is_bitten = false
 VAR prev_ammo = 3
 VAR prev_has_knife = false
+VAR prev_gave_razor_ammo = false
 
 
 // Start main loop
@@ -137,6 +139,8 @@ The scientist goes around the lab and gathers the remaining survivors. Razor dis
 "Do you have any extra ammo? I'm running low"
 You still have {ammo} magazines left.
 + {ammo > 1} Give Razor extra ammo
+    ~ ammo -= 1
+    ~ gave_razor_ammo = true
     -- "Appreciate it!" Razor is grateful for the ammo.
 + Keep your ammo
     -- "I Undersand." Razor counts the few rounds he has left.
@@ -151,18 +155,59 @@ You exit the lab and see your teammates escorting the survivors back to the entr
 At the end of the hallway you come to a door labeled testing area. Large Biohazard warning signs are displayed around the entrance. It doesn't give you a great feeling.
 Razor walks up to the card key terminal and unlocks the door. Time to see this errant yourself.
 + Open the door
-    -> testing_area
+    -> testing_area_entrance
 -> END
 
-=== testing_area ===
-
+=== testing_area_entrance ===
+#CLEAR
+You open the door and enter the testing area. Two columns of desk run down the room, with an array of computers and other equipment present. It seems to be safe for now.
+You walk down to the end of the room where there is a one way window. You look through it and see the errant the scientist referred to.
+It's a towering prescense, at least seven feet tall. Slimy, with smooth amphibious skin. The most shocking part was the one eye the creature had. A single bowling ball sized eyeball.
+You stare at it for several seconds, speechless.
+"We'll have to get the research node past that errant," Razor states. You look past the errant and see a computer terminal on the far wall.
+"We're gonna have to get past it, pull the data, and get back here. I've noticed it doesn't always have its eye open. It does an extended blink. We'll have to move during those."
+You take a deep breath and prepare to enter this new nightmare.
++ Open the door
+    -> inner_testing_area
 -> END
+
+=== inner_testing_area ===
+#CLEAR
+~store_previous_player_stats()
+You and Razor stand by the door waiting for a signal from the rest of the team that the errant is blinking. You get the signal and quickly charge into the room. You stop once inside and see that the errant is even more terrifying without a window between.
+Its jaw is open and a combination of drool, pus, and blood drip out of it. You give a quick glance at Razor who is just as shocked as you are.
+The eye opens and you both freeze in place, not even chancing a breath. The eye closes again and you both march forward. The errant is in the center of the room, so Razor takes the left side and you take the right side.
+You both keep extreme focus on the eye as you continue towards the research node. However, this causes Razor to not notice a puddle of blood on the floor and he trips.
+As he falls, the errant's eye opens and he charges with freakish speed towards Razor.
+{gave_razor_ammo: Razor unloads his rifle into the beast. Despite it's strength, the onslaught of rounds slows it down. Not enough to kill though. The errant barrels into Razor and pushes him back a few feet.}
+{not gave_razor_ammo: Razor begins to unload his rifle into the beast, but too quickly runs out of rounds. The errant charges undeterred and slashes across Razor's face, throat, and chest. Razor grasps at his throat.}
+The errants back now is to you while he's focused on Razor. There's a neon pulsating growth on his back.
++ Unload everything you have into the growth
+    --You unload everything you have at the pulsing growth. The beast howls in pain, turns around and drops after one step. You quickly turn around and start the process to extract the data. It beeps an affirmative tone.
+    ++ Time to get the hell out of here!
+        -> escape
++ Sneak to the research node
+    --You take this opportunity to sneak to the research node to collect the data. You hear painful screams from Razor. You begin the process and wait. You notice that it's gotten eerily. You chance a look backwards. 
+    -- Wrong timing. The errants eye is open and he unleashes a demonic shriek. He charges at you. You have have a split second to recognize your mistake. Right before your head gets lopped off.
+    ++ It's been a good roll
+        -> game_over(-> inner_testing_area)
+    
+-> END
+
 === escape ===
+You take the drive and head towards the exit.
+{not gave_razor_ammo: You pass Razor's corpse on the way. You wish there was some way you could've helped.}
+{gave_razor_ammo: You help Razor off the ground. "Thanks for the help, wouldn't have made it out of here without you." He follows behind you.}
+You take point and run back to the facility entrance. You see the helicopter and a rush of relief hits you. You run even faster. You finally arrive to the helicopter and it starts spinning up.
+You made it, not bad for a first day.
+-> ending
 -> END
 
 === ending ===
 #CLEAR
-You survived!
+Congratulations, you survived!
+{gave_razor_ammo: You got the best ending and saved Razor!}
+{not gave_razor_ammo: You survived, but Razor didn't. Maybe if you gave him some ammo...}
 + Start Over
     -> intro
 -> END
@@ -183,15 +228,18 @@ Mission Failed!
 ~ is_bitten = false
 ~ ammo = 3
 ~ has_knife = false
+~ gave_razor_ammo = false
 
 === function store_previous_player_stats ===
 ~ prev_health = health
 ~ prev_is_bitten = is_bitten
 ~ prev_ammo = ammo
 ~ prev_has_knife = has_knife
+~ prev_gave_razor_ammo = gave_razor_ammo
 
 === function load_previous_player_stats ===
 ~ health = prev_health
 ~ is_bitten = prev_is_bitten
 ~ ammo = prev_ammo
 ~ has_knife = prev_has_knife
+~ gave_razor_ammo = prev_gave_razor_ammo
